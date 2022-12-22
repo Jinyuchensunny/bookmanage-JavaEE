@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="org.model.Bookkindjyc" table="bookkindjyc" schema="bookmanagejyc">
+        <id name="bookKindId">
+            <column name="BookKindID" sql-type="int(11)"/>
+            <generator class="native"/>
+        </id>
+        <property name="bookKindName">
+            <column name="BookKindName" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <set name="bookjycs" inverse="true">
+            <key>
+                <column name="BookKindID" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="org.model.Bookjyc"/>
+        </set>
+    </class>
+</hibernate-mapping>

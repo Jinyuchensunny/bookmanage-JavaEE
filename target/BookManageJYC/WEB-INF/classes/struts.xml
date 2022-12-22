@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="findAllBookClass" class="myBookKindTableViewController" method="findAllBookClass"/>
+        <action name="findBookByBookClassId" class="myBookTableViewController" method="findBookByBookClassId"/>
+        <action name="findBookById" class="myBookViewController" method="findBookById"/>
+        <action name="updateBookById" class="myBookModifyController" method="updateBookById"/>
+
+        <action name="findAllBook" class="myBookController" method="findAllBook"/>
+        <action name="deleteBook" class="myBookController" method="deleteBook"/>
+        <action name="addBook" class="myBookController" method="addBook"/>
+
+        <action name="findAllBookKind" class="myBookKindController" method="findAllBookKind"/>
+        <action name="deleteBookKind" class="myBookKindController" method="deleteBookKind"/>
+        <action name="addBookKind" class="myBookKindController" method="addBookKind"/>
+
+    </package>
+</struts>

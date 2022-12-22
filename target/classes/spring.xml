@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+			classpath:/org/springframework/beans/factory/xml/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <bean id="mysessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="mappingLocations">
+            <list>
+                <value>classpath:Bookjyc.hbm.xml</value>
+                <value>classpath:Bookkindjyc.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/bookmanagejyc?characterEncoding=utf-8</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.connection.username">root</prop>
+                <prop key="hibernate.connection.password">root</prop>
+                <prop key="hibernate.connection.autocommit">true</prop>
+
+            </props>
+        </property>
+    </bean>
+
+    <bean id="myBookkindDao" class="org.dao.imp.BookkindjycDaoImp">
+        <property name="sessionFactory" ref="mysessionFactory"/>
+    </bean>
+    <bean id="myBookKindTableViewController" class="web.action.imp.BookKindTableViewController">
+        <property name="bookkindjycDao" ref="myBookkindDao"/>
+    </bean>
+
+    <bean id="myBookDao" class="org.dao.imp.BookjycDaoImp">
+        <property name="sessionFactory" ref="mysessionFactory"/>
+    </bean>
+    <bean id="myBookTableViewController" class="web.action.imp.BookTableViewController">
+        <property name="bookjycDao" ref="myBookDao"/>
+    </bean>
+    <bean id="myBookViewController" class="web.action.imp.BookViewController">
+        <property name="bookjycDao" ref="myBookDao"/>
+    </bean>
+    <bean id="myBookModifyController" class="web.action.imp.BookModifyController">
+        <property name="bookjycDao" ref="myBookDao"/>
+    </bean>
+
+    <bean id="myBookController" class="web.action.imp.BookController">
+        <property name="bookjycDao" ref="myBookDao"/>
+        <property name="bookkindjycDao" ref="myBookkindDao"/>
+    </bean>
+
+    <bean id="myBookKindController" class="web.action.imp.BookKindController">
+        <property name="bookkindjycDao" ref="myBookkindDao"/>
+    </bean>
+
+</beans>
+
+
